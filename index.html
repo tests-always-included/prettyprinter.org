@@ -1,0 +1,27 @@
+<html ng-app="app">
+    <head>
+        <title>PrettyPrinter.org</title>
+        <link rel="stylesheet" href="styles.css" />
+
+        <!-- ES5 environment -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/4.1.0/es5-shim.min.js"></script>
+
+        <!-- Angular - 1.2.x for IE8 support -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
+        <script src="app.js"></script>
+        <script src="prettyjs-filter.js"></script>
+
+        <!-- Pretty printer -->
+        <script src="lib/complexion.js"></script>
+        <script src="lib/complexion-js.js"></script>
+        <script src="lib/pretty-js.js"></script>
+    </head>
+    <body>
+        <div class="vert-1-2 p-5 h-100">
+            <textarea ng-model="code" placeholder="// JavaScript code goes here ..." class="w-100 h-100"></textarea>
+        </div>
+        <div class="vert-1-2 h-100 ov-a m-5">
+            <pre class="w-100 p-5" ng-bind="code | prettyjsFilter"></pre>
+        </div>
+    </body>
+</html>
