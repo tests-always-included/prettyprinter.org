@@ -2,7 +2,11 @@
 angular.module('app').filter('prettyjsFilter', function () {
     return function (input, options) {
         if (typeof input === 'string' && input.length) {
-            return window.prettyJs(input, options);
+            try {
+                return window.prettyJs(input, options);
+            } catch (ex) {
+                return ex.toString();
+            }
         }
 
         return '';
