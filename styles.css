@@ -2,6 +2,7 @@
 html {
     box-sizing: border-box;
     position: relative;
+    font-family: "Arial", sans-serif;
 }
 
 *, *:before, *:after {
@@ -9,27 +10,95 @@ html {
     position: inherit;
     padding: 0;
     margin: 0;
+    border: 0px solid black;
+}
+
+select, input {
+    font-size: inherit;
+}
+
+/* Non-atomic */
+
+.notice {
+    font-weight: bold;
+    color: red;
 }
 
 /* Atomic classes */
+body .bdlw-1 {
+    border-left-width: 1px;
+}
+
+body .d-b {
+    display: block
+}
+
+body .ff-AnonymousPro {
+    font-family: "Anonymous Pro", monospace;
+}
+
+body .fl-l {
+    float: left;
+}
+
+body .fz-16 {
+    font-size: 16px;
+}
+
 body .h-100 {
     height: 100%;
+}
+
+body .mb-18 {
+    margin-bottom: 10px;
+}
+
+body .ml-20 {
+    margin-left: 20px;
 }
 
 body .ov-a {
     overflow: auto;
 }
 
+body .p-4 {
+    padding: 4px;
+}
+
 body .p-5 {
     padding: 5px;
+}
+
+body .p-7 {
+    padding: 7px;
+}
+
+body .w-20 {
+    width: 20%;
+}
+
+body .w-40 {
+    width: 40%;
 }
 
 body .w-100 {
     width: 100%;
 }
 
-/* Non-atomic utility classes */
-body .vert-1-2 {
-    width: 50%;
-    float: left;
+/* Define the placeholder color for when we manually set it
+ * and force the color to be the same for all browsers */
+body .placeholder {
+    color: #aaa;
+}
+::-webkit-input-placeholder {
+    color: #aaa;
+}
+:-moz-placeholder {
+    color: #aaa;
+}
+::moz-placeholder {
+    color: #aaa;
+}
+:-ms-input-placeholder {
+    color: #aaa;
 }

@@ -1,6 +1,7 @@
 <html ng-app="app">
     <head>
         <title>PrettyPrinter.org</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Anonymous+Pro" />
         <link rel="stylesheet" href="styles.css" />
 
         <!-- ES5 environment -->
@@ -9,6 +10,8 @@
         <!-- Angular - 1.2.x for IE8 support -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.28/angular.js"></script>
         <script src="app.js"></script>
+        <script src="focus-directive.js"></script>
+        <script src="prettyjs-controller.js"></script>
         <script src="prettyjs-filter.js"></script>
 
         <!-- Pretty printer -->
@@ -16,12 +19,56 @@
         <script src="lib/complexion-js.js"></script>
         <script src="lib/pretty-js.js"></script>
     </head>
-    <body>
-        <div class="vert-1-2 p-5 h-100">
-            <textarea ng-model="code" placeholder="// Valid JavaScript or JSON goes here ..." class="w-100 h-100"></textarea>
+    <body ng-controller="prettyjs">
+        <div class="fl-l w-40 p-4 h-100">
+            <textarea ng-model="code" placeholder="// Valid JavaScript or JSON goes here ..." class="w-100 h-100 ff-AnonymousPro fz-16" ng-class="{placeholder: !code}" focus-here></textarea>
         </div>
-        <div class="vert-1-2 h-100 ov-a m-5">
-            <pre class="w-100 p-5" ng-bind="code | prettyjsFilter"></pre>
+        <div class="fl-l w-40 h-100 ov-a m-5" ng-class="{placeholder: !code}">
+            <pre class="w-100 p-5 ff-AnonymousPro fz-16" ng-bind="code | prettyjsFilter:options:'// Pretty version appears here'"></pre>
+        </div>
+        <div class="fl-l w-20 h-100 ov-a m-5 fz-16 bdlw-1">
+            <h2 class="mb-18">Options</h2>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.autoDetectJson"> Auto detect JSON <span ng-if="options.jsonOverrides" class="notice">ACTIVE</span>
+            </label>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.elseNewline"> Put else/catch on separate line
+            </label>
+            <label class="d-b p-7" ng-if="!options.jsonOverrides">
+                <input type="checkbox" ng-model="options.jslint"> Try to make jslint happy
+            </label>
+            <label class="d-b p-7" ng-if="!options.jsonOverrides">
+                Convert strings:<br>
+                <select ng-model="options.convertStrings" ng-options="item.value as item.label for item in options.convertStringsOptions" class="ml-20">
+                </select>
+            </label>
+            <label class="d-b p-7" ng-if="!options.jsonOverrides">
+                Quote property names:<br>
+                <select ng-model="options.quoteProperties" ng-options="item.value as item.label for item in options.quotePropertiesOptions" class="ml-20">
+                </select>
+            </label>
+            <label class="d-b p-7">
+                Indentation:<br>
+                <select ng-model="options.indent" ng-options="item.value as item.label for item in options.indentOptions" class="ml-20">
+                </select>
+            </label>
+            <label class="d-b p-7">
+                To the left of single line comments:<br>
+                <select ng-model="options.commentSpace" ng-options="item.value as item.label for item in options.commentSpaceOptions" class="ml-20">
+                </select>
+            </label>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.noSpaceAfterIf"> No space after "<code>if</code>"
+            </label>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.noSpaceAfterFor"> No space after "<code>for</code>"
+            </label>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.noSpaceAfterFunction"> No space after "<code>function</code>"
+            </label>
+            <label class="d-b p-7">
+                <input type="checkbox" ng-model="options.noSpaceAfterSwitch"> No space after "<code>switch</code>"
+            </label>
         </div>
     </body>
 </html>
